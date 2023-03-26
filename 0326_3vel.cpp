@@ -43,6 +43,21 @@ geometry_msgs::Twist GoToPoint(double des_x, double des_y, double des_theta, dou
     while(std::abs(diff_theta) > PI)   diff_theta = (diff_theta > 0)?diff_theta - 2*PI:diff_theta + 2*PI;
     speed.angular.z = (std::abs(diff_theta) > allowance)?std::abs(speed_Kp) * diff_theta:0;
     if(std::abs(diff_x) <= allowance && std::abs(diff_y) <= allowance && std::abs(diff_theta) <= allowance)    if_reach = true;
+    
+    // std::cout
+    // <<"x:( "
+    // <<des_x<<" "
+    // <<x<<" "
+    // <<speed.linear.x<<" )\t"
+    // <<"y:( "
+    // <<des_y<<" "
+    // <<y<<" "
+    // <<speed.linear.y<<" )\t"
+    // <<"theta:( "
+    // <<des_theta<<" "
+    // <<theta<<" "
+    // <<speed.angular.z<<" )\n";
+
     return speed;
 }
 
