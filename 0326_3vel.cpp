@@ -65,8 +65,8 @@ int main(int argc, char **argv){
     ros::init(argc, argv, "ver0326_3vel");
     ros::NodeHandle nh;
     ros::Publisher vel_pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
-    ros::Subscriber pose_sub = nh.subscribe("/ins_vel",10,Callback);
-    ros::Subscriber pose_sub_fake = nh.subscribe("/cmd_vel",10,Callback);
+    ros::Subscriber pose_sub = nh.subscribe("/ins_vel",10,Callback1);
+    ros::Subscriber fake_odometry = nh.subscribe("/cmd_vel",10,Callback);
 
     ros::Rate r(10);
     
@@ -82,7 +82,7 @@ int main(int argc, char **argv){
                 vel_pub.publish( GoToPoint(des_x, des_y, des_theta, speed_Kp) );
             }
             if_reach = false;
-            std::cout<<"\n\t\tarrive the destanation!\n\n";
+            // std::cout<<"\n\t\tarrive the destanation!\n\n";
         }
         des_x_last = des_x;
         des_y_last = des_y;
